@@ -1,14 +1,15 @@
-const { MongoClient } = require("mongodb");
-const url = "mongodb+srv://482user:Hackccess20@cluster0-me5jz.mongodb.net/test?retryWrites=true&w=majority"
-const client = new MongoClient(url);
+// connect.js
+// specifies settings for database connections
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://jial8:i26nwmaVFQ53rRA@pnwlibrarysheets.2k6c1.mongodb.net/AssistiveTechLib?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 var methods = {
     queryDb: function (query, callback) {
-        console.log("entered queryDb")
-        client.connect(function (err, db) {
-            var dbo = db.db("AssistiveTechLib");
-            //var query = {'$and':[{'$text': {'$search': '\"Wired controller compatible\"'}}, {'ProductId': '182'}]}
-            return dbo.collection("Products").find(query).toArray(function (err, result) {
+        client.connect(err => {
+            console.log("entered queryDb without error");
+            return client.db("AssistiveTechLib").collection("Products").find(query).toArray(function (err, result) {
                 if (err) throw err;
                 return callback(result);
             });
@@ -16,15 +17,9 @@ var methods = {
     },
 
     getTags: function (query, callback) {
-        console.log("entered getTags")
-        client.connect(function (err, db) {
-            var dbo = db.db("AssistiveTechLib");
-            // var key = query["category"] === "feature" ? "readable-value" : "value";
-            // return dbo.collection("Tags").distinct(key, query, function (err, result) {
-            //     if (err) throw err;
-            //     return callback(result);
-            // });
-            return dbo.collection("Tags").find(query).toArray(function(err, result) {
+        client.connect(err => {
+            console.log("entered getTags without error");
+            return client.db("AssistiveTechLib").collection("Tags").find(query).toArray(function(err, result) {
                 if (err) throw err;
                 return callback(result);
             })
@@ -32,10 +27,9 @@ var methods = {
     },
 
     checkUserExists: function (query, callback) {
-        console.log("entered checkUserExists")
-        client.connect(function (err, db) {
-            var dbo = db.db("AssistiveTechLib");
-            return dbo.collection("Users").count(query, function (err, result) {
+        client.connect(err => {
+            console.log("entered checkUserExists without error")
+            return client.db("AssistiveTechLib").collection("Users").count(query, function (err, result) {
                 if (err) throw err;
                 return callback(result);
             });
@@ -44,10 +38,9 @@ var methods = {
 
     registerUser: function (query, callback) {
         console.log("entered registerUser");
-        console.log(query);
-        client.connect(function (err, db) {
-            var dbo = db.db("AssistiveTechLib");
-            return dbo.collection("Users").insert(query, function (err, result) {
+        console.log("query: " + query);
+        client.connect(err => {
+            return client.db("AssistiveTechLib").collection("Users").insertOne(query, function (err, result) {
                 if (err) throw err;
                 console.log("user insert")
             });
@@ -56,9 +49,8 @@ var methods = {
 
     loginUser: function (query, callback) {
         console.log("entered loginUser")
-        client.connect(function (err, db) {
-            var dbo = db.db("AssistiveTechLib");
-            return dbo.collection("Users").count(query, function (err, result) {
+        client.connect(err => {
+            return client.db("AssistiveTechLib").collection("Users").count(query, function (err, result) {
                 if (err) throw err;
                 return callback(result);
             });
