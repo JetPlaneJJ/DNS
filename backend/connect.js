@@ -2,7 +2,7 @@
 // specifies settings for database connections
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://jial8:i26nwmaVFQ53rRA@pnwlibrarysheets.2k6c1.mongodb.net/AssistiveTechLib?retryWrites=true&w=majority";
+const uri = process.env.MONGO_URL; // secret key created on Heroku config vars
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 var methods = {
