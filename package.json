@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/UWcse482a-2020/DNS#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
     "jquery-editable-select": "^2.2.5",

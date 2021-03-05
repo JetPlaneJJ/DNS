@@ -1,9 +1,12 @@
 // connect.js
 // specifies settings for database connections
+ 
+const keys = require('dotenv').config(); // to retrieve password on local end
+const MongoClient = require('mongodb').MongoClient; 
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = process.env.MONGO_URL; // secret key created on Heroku config vars
+const uri = process.env.MONGO_URL; // secret key MUST ALSO be created on Heroku config vars
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => { if (err) throw err} ); // attempt to connect to Mongo
 
 var methods = {
     queryDb: function (query, callback) {
