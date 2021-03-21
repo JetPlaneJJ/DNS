@@ -37,14 +37,14 @@ const validFeatures = {
     "sound-loud": "Sounds are loud",
     "Moves": "Moves",
     "lights-off": "Lights can be off",
-    "lights-bright": "Lights bright or pulsating",
+    "lights-bright": "Has bright/pulsating lights",
     "av-alt": "Audio/Visual output alternatives",
     "input-small": "Input features are small",
     "input-difficult": "Input features hard to manipulate/press",
     "touch-input": "Touch input features",
     "textured": "Has textural differences",
-    "switch-acc": "Accessible by ability switches",
-    "eye-acc": "Accessible by eye-tracking devices",
+    "switch-acc": "Switch-accessible",
+    "eye-acc": "Usable with eye-tracking device",
     "accessible by voice interface?": "Accessible by voice-interface",
 }
 

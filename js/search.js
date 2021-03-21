@@ -2,24 +2,30 @@
 var readableToDbVersion = {};
 var DbToreadableVersion = {};
 
-$(document).ready(function () {
+// when DOM is fully loaded, load the feature/type tags
+$(function() {
   // dynamically put in dropdown options
   $.get("/getTags", function (data) {
     typeTags = data[0];
     featureTags = data[1];
+
     console.log("retrieving tags");
-    //console.log(typeTags);
-    //console.log(featureTags);
+    console.log(typeTags);
+    console.log(featureTags);
+
     typeTags.forEach(function (item, index) {
       $("#tag-select").append("<option>" + item["value"] + "</option>");
     });
-    featureTags.forEach(function (item, index) {
+
+    featureTags.forEach(function (item, index) { // Jay's Note: "readable-value" must be a column in the object
       $("#feature-select").append(
         "<option>" + item["readable-value"] + "</option>"
       );
+      console.log("readable-value = " + item["readable-value"]);
       readableToDbVersion[item["readable-value"]] = item["value"];
       DbToreadableVersion[item["value"]] = item["readable-value"];
     });
+
     if(window.sessionStorage.getItem("tags") !== null) {
       var tags = JSON.parse(window.sessionStorage.getItem("tags"));
       console.log(tags);
@@ -84,6 +90,7 @@ document
 }
 
 function getQueryString() {
+  console.log("getQueryString");
   var queryString = {};
   var productTypes = [];
   var features = [];

@@ -2,7 +2,7 @@
 // specifies settings for database connections
 
 const keys = require("dotenv").config(); // to retrieve password on local end
-var MongoClient = require("mongodb").MongoClient;
+const MongoClient = require("mongodb").MongoClient;
 
 const uri = process.env.MONGO_URL; // secret key MUST ALSO be created on Heroku config vars
 const client = new MongoClient(uri, {
@@ -10,9 +10,11 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
+const connection = client.connect();
+
 var methods = {
   queryDb: function (query, callback) {
-    client.connect((err) => {
+    connection.then(() => {
       console.log("entered queryDb without error");
       return client
         .db("AssistiveTechLib")
@@ -26,7 +28,7 @@ var methods = {
   },
 
   getTags: function (query, callback) {
-    client.connect((err) => {
+    connection.then(() => {
       console.log("entered getTags without error");
       return client
         .db("AssistiveTechLib")
@@ -40,7 +42,7 @@ var methods = {
   },
 
   checkUserExists: function (query, callback) {
-    client.connect((err) => {
+    connection.then(() => {
       console.log("entered checkUserExists without error");
       return client
         .db("AssistiveTechLib")
@@ -55,7 +57,7 @@ var methods = {
   registerUser: function (query, callback) {
     console.log("entered registerUser");
     console.log("query: " + query);
-    client.connect((err) => {
+    connection.then(() => {
       return client
         .db("AssistiveTechLib")
         .collection("Users")
@@ -68,7 +70,7 @@ var methods = {
 
   loginUser: function (query, callback) {
     console.log("entered loginUser");
-    client.connect((err) => {
+    connection.then(() => {
       return client
         .db("AssistiveTechLib")
         .collection("Users")
@@ -80,7 +82,7 @@ var methods = {
   },
 
   insertField: function (pid, url) {
-    client.connect(function (err, db) {
+    connection.then(function (err, db) {
       var dbo = db.db("AssistiveTechLib");
       dbo.collection("Products").updateOne(
         { ProductId: pid },
@@ -92,7 +94,7 @@ var methods = {
   },
 
   insertTags: function (username, tags) {
-    client.connect(function (err, db) {
+    connection.then(function (err, db) {
       var dbo = db.db("AssistiveTechLib");
       dbo.collection("Users").updateOne(
         { username: username },
@@ -104,7 +106,7 @@ var methods = {
   },
 
   getDefaultTags: function (query, callback) {
-    client.connect(function (err, db) {
+    connection.then(function (err, db) {
       var dbo = db.db("AssistiveTechLib");
       dbo.collection("Users").findOne(query, function (err, result) {
         if (err) throw err;
