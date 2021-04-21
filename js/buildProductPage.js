@@ -108,7 +108,7 @@ function setupProduct(product) {
     }
 
     // $("#title").append("<h2>" + product.Name + "</h2>")
-    $("#desc").append("<p tabindex='0'>" + product.Notes + "</p>")
+    $("#desc").append("<p tabindex='0'>" + product.Notes + "</p> <p tabindex='0'> Product ID/Serial Code: " + product.Inventory + "</p>")
 
     $("#category").append("<span tabindex='0'><u>Product Type:</u> </span>" + product.Type)
 
@@ -126,12 +126,8 @@ function setupProduct(product) {
         $("#get-info").append("<span style='font-size: 18px' tabindex='0'>" + description + availability + "</span>")
 
         let redirect = (mode === "buy") ? product['buy-link']
-            : (mode === "borrow") ? product['borrow-loc']
+            : (mode === "borrow") ? "https://docs.google.com/forms/d/e/1FAIpQLScpE4-eZF0djVPW-D6StWxH5ADoyeqj1Pc7-Qc-BpjEExucnQ/viewform?usp=pp_url&entry.1617628070=" + product.Inventory
                 : product['make-link']
-
-        if (redirect === "https://provail.org/") { 
-            redirect = "https://docs.google.com/forms/d/e/1FAIpQLScpE4-eZF0djVPW-D6StWxH5ADoyeqj1Pc7-Qc-BpjEExucnQ/viewform?usp=pp_url&entry.1617628070=" + product.Inventory;
-        }
 
         const link = (redirect === "") ? "" : redirect
         const a_href = document.createElement('a')
