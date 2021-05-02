@@ -95,16 +95,22 @@ function setupProduct(product) {
     const img_prodImg = document.createElement('img')
     var imageLink = product.Image.substring(0, 6) === "../img" ? product.Image : product.ImgurLink;
     img_prodImg.setAttribute('src', imageLink)
-    img_prodImg.setAttribute('alt', 'Image of ' + product.Name)
+    img_prodImg.setAttribute('alt', product.Name)
+    img_prodImg.setAttribute('style', "width: 100%")
     img_prodImg.setAttribute('tabindex', '0')
     $('#image').append(img_prodImg)
 
-    // Video Stuff (Hardcoded, for demonstration only)
-    if (product.ProductId == 51) { 
-        $('#video').append("<iframe src='https://drive.google.com/file/d/10X-ncURK-q2DAJtfsx6fWS4hIYokzlv6/preview' width='100%'></iframe>");
-    }
-    if (product.ProductId == 3) { 
-        $('#video').append("<iframe src='https://drive.google.com/file/d/1rHYeMLlbI37WcK4fUENUwM5SAJpctcvC/preview' width='100%'></iframe>"); 
+    // How to Use This Item section
+    var videoLink = product.Link;
+    if (videoLink.indexOf("d/") != -1 && videoLink.indexOf("/view?") != -1) { // is a video
+        var start = videoLink.indexOf("d/") + 2;
+        var end = videoLink.indexOf("/view?");
+        var fullEmbeddedLink = "https://drive.google.com/file/d/" + videoLink.substring(start, end) + "/preview";
+        var htmlFrame = "<iframe src='" + fullEmbeddedLink + "' width='100%'></iframe>";
+        $('#video').append(htmlFrame); 
+    } else if (videoLink.indexOf("docs.google.com/document/") != -1) { // is a Google Docs link to embed
+        var htmlFrame = "<iframe src='" + videoLink + "' width='100%'></iframe>";
+        $('#video').append(htmlFrame);
     }
 
     // $("#title").append("<h2>" + product.Name + "</h2>")
