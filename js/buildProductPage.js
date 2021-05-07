@@ -109,12 +109,12 @@ function setupProduct(product) {
         var htmlFrame = "<iframe src='" + fullEmbeddedLink + "' width='100%'></iframe>";
         $('#video').append(htmlFrame); 
     } else if (videoLink.indexOf("docs.google.com/document/") != -1) { // is a Google Docs link to embed
-        var htmlFrame = "<iframe src='" + videoLink + "' width='100%'></iframe>";
+        var htmlFrame = "<a href=" + videoLink + ">Instructions on Google Docs</a>";
         $('#video').append(htmlFrame);
     }
 
     // $("#title").append("<h2>" + product.Name + "</h2>")
-    $("#desc").append("<p tabindex='0'>" + product.Notes + "</p> <p tabindex='0'> Product ID/Serial Code: " + product.Inventory + "</p>")
+    $("#desc").append("<p tabindex='0'>" + product.Notes + "</p> <p tabindex='0'> <strong>Product ID/Serial Code:</strong> " + product.Inventory + "</p>")
 
     $("#category").append("<span tabindex='0'><u>Product Type:</u> </span>" + product.Type)
 
