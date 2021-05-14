@@ -156,7 +156,6 @@ function getQueryString() {
 
   var brokenItemFilter = { $nin: ["Broken"] }; // exclude Broken items
   queryString["Condition"] = brokenItemFilter;
-  prompt("QS: " + JSON.stringify(queryString));
 
   var Q = {
     query: queryString,
