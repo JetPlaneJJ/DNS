@@ -30,19 +30,20 @@ function getProductAvailability(status) {
 
 const validFeatures = {
     "Cognitive-age": "Cognitive Age",
-    "sound-off": "Sounds can be off",
-    "sound-loud": "Sounds are loud",
+    "sound-off": "Audio can be turned off",
+    "sound-loud": "Has loud sounds",
     "Moves": "Moves",
-    "lights-off": "Lights can be off",
+    "lights-off": "Lights can be turned off",
     "lights-bright": "Has bright/pulsating lights",
-    "av-alt": "Audio/Visual output alternatives",
-    "input-small": "Input features are small",
-    "input-difficult": "Input features hard to manipulate/press",
-    "touch-input": "Touch input features",
-    "textured": "Has textural differences",
+    "av-alt": "Has audio/visual output alternatives",
+    "input-big": "Has large inputs", // Has large inputs
+    "input-easy": "Has easy to press/manipulate inputs", // Has easy to press/manipulate inputs
+    "touch-input": "Has touch input features", // Has touch input features
+    "textured": "Has textural variation",
     "switch-acc": "Switch-accessible",
     "eye-acc": "Usable with eye-tracking device",
-    "accessible by voice interface?": "Accessible by voice-interface",
+    "accessible by voice interface?": "Voice-activated",
+    // Usable with Xbox Adaptive Controller
 }
 
 
@@ -68,8 +69,8 @@ function setupProduct(product) {
         "lights-off": "N/A",
         "lights-bright": "N/A",
         "av-alt": "N/A",
-        "input-small": "N/A",
-        "input-difficult": "N/A",
+        "input-big": "N/A",
+        "input-easy": "N/A",
         "touch-input": "N/A",
         "textured": "N/A",
         "switch-acc": "Yes",

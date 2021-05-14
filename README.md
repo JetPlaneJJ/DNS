@@ -40,7 +40,7 @@ Collections: Products, Tags, Users
 1. **Ensure that the products csv file follows the same format as our sample-products.csv located on Github.** 
 Required columns:
 
-ProductId, Name, Inventory, Image**, Link, Type, Notes, Cognitive-age, sound-off, sound-loud, Moves, lights-off, lights-bright, av-alt, input-small, input-difficult, touch-input, textured, switch-acc, eye-acc, buyable, buy-link, borrowable, borrow-like, makable, make-link
+ProductId, Name, Inventory, Image**, Link, Type, Notes, Cognitive-age, sound-off, sound-loud, Moves, lights-off, lights-bright, av-alt, input-big, input-easy, touch-input, textured, switch-acc, eye-acc, buyable, buy-link, borrowable, borrow-like, makable, make-link
 
 ** The Image field should be a valid, permanent reference to the image. If it is a Google Drive link, consider using the backend/imgur.js script to generate an imgur link for the product. If this option is chosen, an additional field will be added to the Products collection called “ImgurLink”
 Feel free to add additional feature columns, as they will be added as new fields for each document in the collection. 
