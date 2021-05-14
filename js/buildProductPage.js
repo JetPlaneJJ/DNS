@@ -25,10 +25,7 @@ function getProductAvailability(status) {
     if (caps_status === "YES") {
         return "Available"
     }
-
-    if (caps_status === "NO" || caps_status === "") {
-        return "Not Available"
-    }
+    return "Not Available"
 }
 
 const validFeatures = {
@@ -96,7 +93,6 @@ function setupProduct(product) {
     var imageLink = product.Image.substring(0, 6) === "../img" ? product.Image : product.ImgurLink;
     img_prodImg.setAttribute('src', imageLink)
     img_prodImg.setAttribute('alt', product.Name)
-    img_prodImg.setAttribute('style', "width: 100%")
     img_prodImg.setAttribute('tabindex', '0')
     $('#image').append(img_prodImg)
 

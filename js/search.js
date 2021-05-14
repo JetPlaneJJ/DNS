@@ -153,6 +153,11 @@ function getQueryString() {
     andClause["$and"].push(textClause);
     queryString = andClause;
   }
+
+  var brokenItemFilter = { $nin: ["Broken"] }; // exclude Broken items
+  queryString["Condition"] = brokenItemFilter;
+  prompt("QS: " + JSON.stringify(queryString));
+
   var Q = {
     query: queryString,
   };

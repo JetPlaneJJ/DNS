@@ -12,7 +12,6 @@ function setupCard(product, cardNum) {
     a_img.setAttribute('href', './product-page.html?ProductId=' + product.ProductId)
     a_img.setAttribute('tabindex', '0')
 
-
     const figure = document.createElement('figure')
 
     const img = document.createElement('img')
