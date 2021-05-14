@@ -15,7 +15,6 @@ const connection = client.connect();
 var methods = {
   queryDb: function (query, callback) {
     connection.then(() => {
-      // console.log("entered queryDb without error");
       return client
         .db("AssistiveTechLib")
         .collection("Products")
@@ -29,7 +28,6 @@ var methods = {
 
   getTags: function (query, callback) {
     connection.then(() => {
-      // console.log("entered getTags without error");
       return client
         .db("AssistiveTechLib")
         .collection("Tags")
@@ -43,7 +41,6 @@ var methods = {
 
   checkUserExists: function (query, callback) {
     connection.then(() => {
-      // console.log("entered checkUserExists without error");
       return client
         .db("AssistiveTechLib")
         .collection("Users")

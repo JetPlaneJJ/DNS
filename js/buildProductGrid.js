@@ -115,6 +115,10 @@ function buildTitleAndBreadcrumb() {
         }
     }
 
+    if (readableQuery == "Condition") { // Prevent the default filter for broken items from showing up in text
+        readableQuery = "All Items";
+    }
+
     $('.page-breadcrumb').append("<h2 class=\"col-lg-10\" tabindex='0'> " + products.length + " Search Results for \"" + readableQuery + "\"</h2>")
     if (!isBrowseAll) {
         $('.page-breadcrumb').append("<a href='./categories.html' tabindex='0' id='all-products'>All Products / </a>")

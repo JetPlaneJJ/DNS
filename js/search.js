@@ -169,6 +169,9 @@ function getQueryString() {
 $("#tag-select").change(function () {
   var name = $(this).val();
   var tagList = [];
+  if (name == "") { // if "select an option"
+    return;
+  }
   $("#tags li").each(function () {
     tagList.push($(this).text());
   });

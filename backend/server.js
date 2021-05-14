@@ -17,41 +17,6 @@ const product = fs.readFileSync(
   'utf8',
 )
 
-const register = fs.readFileSync(
-  path.resolve(__dirname, '..', 'src/register.html'),
-  'utf8',
-)
-
-const login = fs.readFileSync(
-  path.resolve(__dirname, '..', 'src/login.html'),
-  'utf8',
-)
-
-const profile = fs.readFileSync(
-  path.resolve(__dirname, '..', 'src/profile.html'),
-  'utf8',
-)
-
-const taxonomy = fs.readFileSync(
-  path.resolve(__dirname, '..', 'src/taxonomy.html'),
-  'utf8',
-)
-
-const about = fs.readFileSync(
-  path.resolve(__dirname, '..', 'src/about.html'),
-  'utf8',
-)
-
-const contact = fs.readFileSync(
-  path.resolve(__dirname, '..', 'src/contact.html'),
-  'utf8',
-)
-
-const logout = fs.readFileSync(
-  path.resolve(__dirname, '..', 'src/logout.html'),
-  'utf8',
-)
-
 app.get('/api/healthcheck', (req, res) => {
   return res.send('Healthy!')
 })
@@ -71,44 +36,6 @@ app.get('/getTags', (req, res) => {
       featureTags = result;
       return res.json([typeTags, featureTags]);
     })
-  })
-})
-
-app.get('/register', (req, res) => {
-  var username = req.query['username'];
-  var email = req.query['email'];
-  database.checkUserExists({"username": username}, function(result) {
-    if (result > 0) {
-      return res.json("Username already taken. Please try again.");
-    } else {
-      database.checkUserExists({"email": email}, function(result) {
-        if (result > 0) {
-          return res.json("Email already taken. Please try again.");
-        } else {
-          database.registerUser(req.query, function(result) {
-          })
-          return res.json("Registration Successful.");
-        }
-      })
-    }
-  })
-})
-
-app.get('/login', (req, res) => {
-  var username = req.query['username'];
-  var password = req.query['password'];
-  database.checkUserExists({"username": username}, function(result) {
-    if (result == 0) {
-      return res.json("Wrong username or password");
-    } else {
-      database.loginUser({'username': username, 'password': password}, function(result) {
-        if (result > 0) {
-          return res.json("Log in Successful");
-        } else {
-          return res.json("Wrong username or password");
-        }
-      })
-    }
   })
 })
 
