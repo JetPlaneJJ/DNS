@@ -15,7 +15,7 @@ function setupCard(product, cardNum) {
     const figure = document.createElement('figure')
 
     const img = document.createElement('img')
-    var imageLink = product.Image.substring(0, 6) === "../img" ? product.Image : product.ImgurLink;
+    var imageLink = product.Image.substring(0, 6) === "../img" ? product.Image : product.EmbeddedLink;
     img.setAttribute('src', imageLink)
     img.setAttribute('alt', 'Image of ' + product.Name)
 

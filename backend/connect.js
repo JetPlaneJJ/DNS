@@ -84,7 +84,7 @@ var methods = {
       dbo.collection("Products").updateOne(
         { ProductId: pid },
         {
-          $set: { ImgurLink: url },
+          $set: { EmbeddedLink: url },
         }
       );
     });

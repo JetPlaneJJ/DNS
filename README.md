@@ -37,16 +37,16 @@ Database name: “AssistiveTechLib”
 Collections: Products, Tags, Users
 3. To use the database with the code from this project, get the connection url string for the database you just created. Go to backend/connect.js and set const url to that string. You may have to whitelist IP addresses to allow access to the database.
 ## Uploading a Products csv file to the Products Collection
-1. **Ensure that the products csv file follows the same format as our sample-products.csv located on Github.** 
+1. **Ensure that the products csv file contains the following columns.** 
 Required columns:
+ProductId, Name, Inventory, Image, Link (to either a Google Docs or video of how to use the item), Type, Availability, Condition, Location, Company, Notes, Date To Be Returned, EmbeddedLink (for embedding image URLs in HTML).
 
-ProductId, Name, Inventory, Image**, Link, Type, Notes, Cognitive-age, sound-off, sound-loud, Moves, lights-off, lights-bright, av-alt, input-big, input-easy, touch-input, textured, switch-acc, eye-acc, buyable, buy-link, borrowable, borrow-like, makable, make-link
+Optional feature columns: Cognitive-age, sound-off, sound-loud, Moves, lights-off, lights-bright, av-alt, input-big, input-easy, touch-input, textured, switch-acc, eye-acc, accessible by voice interface?, buyable, buy-link, borrowable, borrow-loc, makable	make-link.
 
-** The Image field should be a valid, permanent reference to the image. If it is a Google Drive link, consider using the backend/imgur.js script to generate an imgur link for the product. If this option is chosen, an additional field will be added to the Products collection called “ImgurLink”
-Feel free to add additional feature columns, as they will be added as new fields for each document in the collection. 
+** The Image field should be a valid and publically available Google Drive link.
 
 From the original CSV stored by Provail, we have removed all duplicate listings and added a ProductId column to uniquely identify all the listings in our database. If your workflow is going to be deleting all elements of the Product database, then reuploading the entire csv file again to make updates to the table, **make sure** to keep the same ProductId column for each product if possible.
-2. The actual upload process can be done multiple ways. One option is to use the mongoimport command on the mongoshell (https://docs.atlas.mongodb.com/import/mongoimport/)
+1. The actual upload process can be done multiple ways. One option is to use the mongoimport command on the mongoshell (https://docs.atlas.mongodb.com/import/mongoimport/)
 
 Another option is to use the MongoDB Compass GUI, which should come installed on your machine if you have downloaded the mongo shell. In the Compass GUI, enter the connect string to connect to the cluster, then navigate to the AssistiveTechLib database and click on the Products collection, which should be empty. Then, click on the “ADD DATA” green button and choose “Import File”. Browse to the location of your csv file, set the file type to be “CSV” and click on the “Import” button.
 

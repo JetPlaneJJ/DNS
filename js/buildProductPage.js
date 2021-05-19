@@ -36,14 +36,14 @@ const validFeatures = {
     "lights-off": "Lights can be turned off",
     "lights-bright": "Has bright/pulsating lights",
     "av-alt": "Has audio/visual output alternatives",
-    "input-big": "Has large inputs", // Has large inputs
-    "input-easy": "Has easy to press/manipulate inputs", // Has easy to press/manipulate inputs
-    "touch-input": "Has touch input features", // Has touch input features
+    "input-big": "Has large inputs", 
+    "input-easy": "Has easy to press/manipulate inputs", 
+    "touch-input": "Has touch input features", 
     "textured": "Has textural variation",
     "switch-acc": "Switch-accessible",
     "eye-acc": "Usable with eye-tracking device",
     "accessible by voice interface?": "Voice-activated",
-    // Usable with Xbox Adaptive Controller
+    "xbox-adaptive-usable" : "Usable with Xbox Adaptive Controller"
 }
 
 
@@ -91,7 +91,7 @@ function setupProduct(product) {
 
     // Photo stuff
     const img_prodImg = document.createElement('img')
-    var imageLink = product.Image.substring(0, 6) === "../img" ? product.Image : product.ImgurLink;
+    var imageLink = product.Image.substring(0, 6) === "../img" ? product.Image : product.EmbeddedLink;
     img_prodImg.setAttribute('src', imageLink)
     img_prodImg.setAttribute('alt', product.Name)
     img_prodImg.setAttribute('tabindex', '0')
@@ -111,7 +111,7 @@ function setupProduct(product) {
     }
 
     // $("#title").append("<h2>" + product.Name + "</h2>")
-    $("#desc").append("<p tabindex='0'>" + product.Notes + "</p> <p tabindex='0'> <strong>Product ID/Serial Code:</strong> " + product.Inventory + "</p>")
+    $("#desc").append("<p tabindex='0'>" + product.Notes + "</p> <p tabindex='0'> <strong>Product ID/Serial Code:</strong> " + product.ProductId + "</p>")
 
     $("#category").append("<span tabindex='0'><u>Product Type:</u> </span>" + product.Type)
 
@@ -129,7 +129,7 @@ function setupProduct(product) {
         $("#get-info").append("<span style='font-size: 18px' tabindex='0'>" + description + availability + "</span>")
 
         let redirect = (mode === "buy") ? product['buy-link']
-            : (mode === "borrow") ? "https://docs.google.com/forms/d/e/1FAIpQLScpE4-eZF0djVPW-D6StWxH5ADoyeqj1Pc7-Qc-BpjEExucnQ/viewform?usp=pp_url&entry.1617628070=" + product.Inventory
+            : (mode === "borrow") ? "https://docs.google.com/forms/d/e/1FAIpQLScpE4-eZF0djVPW-D6StWxH5ADoyeqj1Pc7-Qc-BpjEExucnQ/viewform?usp=pp_url&entry.1617628070=" + product.ProductId
                 : product['make-link']
 
         const link = (redirect === "") ? "" : redirect
